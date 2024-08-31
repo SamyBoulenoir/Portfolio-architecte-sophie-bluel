@@ -186,3 +186,31 @@ footer nav ul {
 	margin: 2em
 }
 
+.button {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.button button {
+    padding: 10px 20px;
+    border: 2px solid #004D40;
+    border-radius: 20px;
+    background-color: transparent;
+    color: #004D40;
+    font-family: 'Syne', sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.button button.active,
+.button button:hover {
+    background-color: #004D40;
+    color: #ffffff;
+}
+
+.button button:focus {
+    outline: none;
+}
