@@ -27,8 +27,10 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
 
         if (data.token) {
             alert("Connexion réussie !");
-            localStorage.setItem('jwtToken', data.token);
-            window.location.href = './index.html';
+            document.cookie = `jwtToken=${data.token}; path=/;`;
+            setTimeout(() => {
+                window.location.href = './index.html';
+            }, 100); // Délai de 100 ms
         } else {
             alert("Échec de la connexion, veuillez vérifier vos informations.");
         }
