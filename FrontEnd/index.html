@@ -11,13 +11,16 @@
     <link rel="stylesheet" href="./assets/style.css">
 </head>
 <body>
+    <div id="topBar" class="top-bar" style="display: none;">
+        <p>Bienvenue, vous êtes connecté</p>
+    </div>
 <header>
     <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
     <nav>
         <ul>
             <li>projets</li>
             <li>contact</li>
-            <li><a href="login.html">login</a></li>
+            <li id="authButton" href="login.html"> login</li>
             <li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
         </ul>
     </nav>
@@ -74,5 +77,11 @@
 </footer>
 
 <script src="./Scripts/Categories.js"></script>
+<script src="./Scripts/displayTopBar.js"></script>
+<script src="./Scripts/AuthButton.js"></script>
+<script src="./Scripts/modal.js"></script>
+
+
+
 </body>
 </html>
