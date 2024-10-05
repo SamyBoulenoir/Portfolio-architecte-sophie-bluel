@@ -347,10 +347,10 @@ footer nav ul {
 .modal-gallery {
 	width: 80%;
     display: flex;
-	justify-content: space-between;
+	justify-content: flex-start;
 	align-items: center;
     flex-wrap: wrap;
-    gap: 25px 10px;
+    gap: 25px 22px;
 }
 
 .modal-gallery-img {
@@ -383,7 +383,7 @@ footer nav ul {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #1D6154;
+    background-color: black;
     color: white;
     text-align: center;
     padding: 10px 0;
