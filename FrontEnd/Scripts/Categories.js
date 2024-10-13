@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const gallery = document.querySelector('.gallery');
     const categoryContainer = document.querySelector('.button');
 
-    // Déclare worksData pour pouvoir y accéder globalement
     window.worksData = [];
 
     fetch('http://localhost:5678/api/categories/')
@@ -34,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch('http://localhost:5678/api/works')
         .then(response => response.json())
         .then(data => {
-            window.worksData = data; // Stocke les données globalement
+            window.worksData = data;
             displayWorks(window.worksData);
         })
         .catch(error => {

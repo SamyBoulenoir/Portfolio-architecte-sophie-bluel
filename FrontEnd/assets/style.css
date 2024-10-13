@@ -391,3 +391,41 @@ footer nav ul {
     font-size: 16px;
     z-index: 1000;
 }
+.back-button {
+    width: 20px;
+    height: 20px;
+}
+
+.upload-wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 80%;
+	background-color:#E8F1F6;
+}
+
+#upload-img {
+	width: 173px;
+	height: 36px;
+	border-radius: 50px;
+	background-color: #CBD6DC;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: 'Work Sans';
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 16.42px;
+	text-align: center;
+}
+
+#upload-format {
+	font-family: 'Work Sans';
+	font-size: 10px;
+	font-weight: 400;
+	line-height: 11.73px;
+	text-align: center;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}

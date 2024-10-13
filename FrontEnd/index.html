@@ -43,7 +43,6 @@
         <div class="button"></div>
         <div class="gallery"></div>
     </section>
-    <!-- Modale -->
     <div id="imageModal" class="modal">
         <div class="modal-content">
             <p class="modal-title">Galerie photo</p>
@@ -51,6 +50,22 @@
             <div class="gallery-wrapper">
                 <div class="modal-gallery"></div>
             </div>
+            <div class="upload-form" style="display: none;">
+                <div class="upload-wrapper">
+                    <img src="./assets/icons/picture-svgrepo-com 1.png" alt="image icon" id="imageIcon">
+                    <label for="uploadImage" id="upload-img">+ Ajouter une photo</label>
+                    <input type="file" id="uploadImage" accept="image/*" style="display: none;">
+                    <p id="upload-format">jpg, png : 4mo max</p>
+                </div>
+                <label for="imageName">Nom de l'image</label>
+                <input type="text" id="imageName">
+                <label for="category">Catégorie</label>
+                <select id="category">
+                </select>
+                <button id="submitUpload">Valider</button>
+            </div>
+            <img src="./assets/icons/back-btn.png" alt="Retour" id="backButton" style="position: absolute; top: 10px; left: 10px; cursor: pointer; display: none;">
+            <button id="uploadButton">Ajouter des images</button>
         </div>
     </div>
     <section id="contact">
