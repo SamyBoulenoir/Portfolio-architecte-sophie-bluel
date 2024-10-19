@@ -429,3 +429,27 @@ footer nav ul {
 	margin-top: 5px;
 	margin-bottom: 5px;
 }
+
+#uploadButton {
+	width: 237px;
+	height: 36px;
+	gap: 0px;
+	border-radius: 60px;
+	background-color: #1D6154;
+	color: white;
+}
+
+.separator {
+	width: 420px;
+	height: 0px;
+	border: 1px solid #B3B3B3;
+	margin-top: 60px;
+	margin-bottom: 40px;
+}
+
+.separator-wrapper {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+}

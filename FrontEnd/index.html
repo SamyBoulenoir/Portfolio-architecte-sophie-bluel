@@ -12,7 +12,7 @@
 </head>
 <body>
     <div id="topBar" class="top-bar" style="display: none;">
-        <p>Mode édition</p>
+        <p> <img src="./assets/icons/Vector.png" alt="edition icon"> Mode édition</p>
     </div>
 <header>
     <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
@@ -45,7 +45,7 @@
     </section>
     <div id="imageModal" class="modal">
         <div class="modal-content">
-            <p class="modal-title">Galerie photo</p>
+            <p id="modalTitle" class="modal-title">Galerie photo</p>
             <span class="close">&times;</span>
             <div class="gallery-wrapper">
                 <div class="modal-gallery"></div>
@@ -64,8 +64,11 @@
                 </select>
                 <button id="submitUpload">Valider</button>
             </div>
-            <img src="./assets/icons/back-btn.png" alt="Retour" id="backButton" style="position: absolute; top: 10px; left: 10px; cursor: pointer; display: none;">
-            <button id="uploadButton">Ajouter des images</button>
+            <img src="./assets/icons/leftArrow.png" alt="Retour" id="backButton" style="position: absolute; top: 26px; left: 20px; cursor: pointer; display: none;">
+            <div class="separator-wrapper">
+                <div class="separator"></div>
+            </div>
+            <button id="uploadButton">Ajouter une photo</button>
         </div>
     </div>
     <section id="contact">

@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const uploadWrapper = document.querySelector('.upload-wrapper');
     const uploadImageInput = document.getElementById('uploadImage');
     const imageIcon = document.getElementById('imageIcon');
+    const modalTitle = document.getElementById('modalTitle');
 
     const imagePreview = document.createElement('img');
     imagePreview.style.display = 'none';
@@ -96,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateMainGallery() {
         const gallery = document.querySelector('.gallery');
-        gallery.innerHTML = ''; 
+        gallery.innerHTML = '';
         window.worksData.forEach(work => {
             const figure = document.createElement('figure');
             const img = document.createElement('img');
@@ -118,10 +119,11 @@ document.addEventListener('DOMContentLoaded', () => {
     uploadForm.style.alignItems = 'center';
 
     uploadButton.addEventListener('click', () => {
+        modalTitle.textContent = 'Ajout photo'
         uploadButton.style.display = 'none';
         modalGallery.style.display = 'none';
         uploadForm.style.display = 'flex';
-        backButton.style.display = 'block'; 
+        backButton.style.display = 'block';
     });
 
     backButton.addEventListener('click', () => {
@@ -129,6 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
         uploadForm.style.display = 'none';
         modalGallery.style.display = 'flex';
         backButton.style.display = 'none';
+        modalTitle.textContent = 'Galerie photo';
     });
 
     document.getElementById('submitUpload').addEventListener('click', () => {
