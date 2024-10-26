@@ -13,10 +13,10 @@ function updateAuthButton() {
     const authButton = document.getElementById('authButton');
 
     if (jwtToken) {
-        authButton.textContent = 'Logout';
+        authButton.textContent = 'logout';
         authButton.onclick = handleLogout;
     } else {
-        authButton.textContent = 'Login';
+        authButton.textContent = 'login';
         authButton.onclick = handleLogin;
     }
 }

@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const categoryContainer = document.querySelector('.button');
 
     window.worksData = [];
+    window.category = [];
 
     fetch('http://localhost:5678/api/categories/')
         .then(response => response.json())
@@ -17,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
             categoryContainer.appendChild(allButton);
 
             categories.forEach(category => {
+                window.category.push([category.name, category.id]);
                 const button = document.createElement('button');
                 button.textContent = category.name;
                 button.addEventListener('click', () => {
@@ -25,6 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
                 categoryContainer.appendChild(button);
             });
+
+            const event = new Event('categoriesLoaded');
+            document.dispatchEvent(event);
         })
         .catch(error => {
             console.error('Erreur lors du fetch des catégories:', error);

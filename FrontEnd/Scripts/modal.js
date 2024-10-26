@@ -9,12 +9,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const backButton = document.getElementById('backButton');
     const uploadWrapper = document.querySelector('.upload-wrapper');
     const uploadImageInput = document.getElementById('uploadImage');
-    const imageIcon = document.getElementById('imageIcon');
     const modalTitle = document.getElementById('modalTitle');
-
     const imagePreview = document.createElement('img');
+    const imageNameInput = document.getElementById('imageName');
+    const categorySelect = document.getElementById('category');
+
     imagePreview.style.display = 'none';
     uploadWrapper.appendChild(imagePreview);
+
+    document.addEventListener('categoriesLoaded', () => {
+        const categorySelect = document.getElementById("category");
+        window.category.forEach(category => {
+            const option = document.createElement("option");
+            option.value = category[1];
+            option.textContent = category[0];
+            categorySelect.appendChild(option);
+        });
+    });
+    
 
     uploadImageInput.addEventListener('change', (event) => {
         const file = event.target.files[0];
@@ -50,23 +62,19 @@ document.addEventListener('DOMContentLoaded', () => {
     function createImageElement(work, container) {
         const imgContainer = document.createElement('div');
         imgContainer.classList.add('img-container');
-
         const img = document.createElement('img');
         img.classList.add('modal-gallery-img');
         img.src = work.imageUrl;
         img.alt = work.title;
-
         const deleteButton = document.createElement('img');
         deleteButton.src = './assets/icons/delete-btn.png';
         deleteButton.alt = 'Supprimer';
         deleteButton.width = '14px';
         deleteButton.height = '14px';
         deleteButton.classList.add('delete-button');
-
         deleteButton.addEventListener('click', () => {
             deleteWork(work.id, imgContainer);
         });
-
         imgContainer.appendChild(img);
         imgContainer.appendChild(deleteButton);
         container.appendChild(imgContainer);
@@ -102,46 +110,112 @@ document.addEventListener('DOMContentLoaded', () => {
             const figure = document.createElement('figure');
             const img = document.createElement('img');
             const figcaption = document.createElement('figcaption');
-
             img.src = work.imageUrl;
             img.alt = work.title;
             figcaption.textContent = work.title;
-
             figure.appendChild(img);
             figure.appendChild(figcaption);
-
             gallery.appendChild(figure);
         });
     }
 
-    uploadForm.style.width = '100%';
-    uploadForm.style.flexDirection = 'column';
-    uploadForm.style.alignItems = 'center';
+    function uploadWork() {
+        const imageFile = uploadImageInput.files[0];
+        const imageName = imageNameInput.value;
+        const categoryId = categorySelect.value; // ID de la catégorie
+    
+        const formData = new FormData();
+        formData.append('image', imageFile);
+        formData.append('title', imageName);
+        formData.append('category', categoryId); // Envoie l'ID de la catégorie
+    
+        const jwtToken = getCookie('jwtToken');
+    
+        fetch('http://localhost:5678/api/works', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${jwtToken}`
+            },
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erreur lors de l\'upload de l\'image.');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Work uploaded successfully:', data);
+            window.worksData.push(data);
+            updateMainGallery();
+        })
+        .catch(error => {
+            console.error('Erreur:', error);
+        });
+    }
+    
+
+    function IsFormRdyToSubmit() {
+        const imageFile = uploadImageInput.files[0];
+        const imageName = imageNameInput.value.trim();
+        const category = categorySelect.value;
+
+        console.log(imageFile, imageName, category, 'pipi');
+
+        if (imageFile && imageName !== '' && category !== '') {
+            uploadButton.disabled = false;
+            uploadButton.style.backgroundColor = '#1D6154';
+            return true;
+        } else {
+            uploadButton.disabled = true;
+            uploadButton.style.backgroundColor = '#A7A7A7';
+            return false;
+        }
+    }
+
+    function SubmitForm() {
+        const imageFile = uploadImageInput.files[0];
+        const imageName = imageNameInput.value;
+        const category = categorySelect.value;
+        console.log('Image uploadée :', { imageFile, imageName, category });
+        uploadWork();
+        uploadImageInput.value = '';
+        imageNameInput.value = '';
+        categorySelect.value = '';
+        imagePreview.src = null;
+        imagePreview.style.display = 'none';
+        uploadWrapper.querySelector('#imageIcon').style.display = '';
+        uploadWrapper.querySelector('label').style.display = '';
+        uploadWrapper.querySelector('p').style.display = '';
+        
+        uploadButton.textContent = 'Ajouter une photo';
+        uploadForm.style.display = 'none';
+        modalGallery.style.display = 'flex';
+        backButton.style.display = 'none';
+    }
+
+    imageNameInput.addEventListener('input', IsFormRdyToSubmit);
+    categorySelect.addEventListener('change', IsFormRdyToSubmit);
 
     uploadButton.addEventListener('click', () => {
-        modalTitle.textContent = 'Ajout photo'
-        uploadButton.style.display = 'none';
+        if (IsFormRdyToSubmit()) {
+            SubmitForm();
+            modal.style.display = 'none';
+        }
+        modalTitle.textContent = 'Ajout photo';
+        uploadButton.textContent = 'Valider';
         modalGallery.style.display = 'none';
         uploadForm.style.display = 'flex';
         backButton.style.display = 'block';
     });
 
     backButton.addEventListener('click', () => {
-        uploadButton.style.display = '';
+        uploadButton.textContent = 'Ajouter une photo';
         uploadForm.style.display = 'none';
         modalGallery.style.display = 'flex';
         backButton.style.display = 'none';
         modalTitle.textContent = 'Galerie photo';
-    });
-
-    document.getElementById('submitUpload').addEventListener('click', () => {
-        const imageFile = document.getElementById('uploadImage').files[0];
-        const imageName = document.getElementById('imageName').value;
-        const category = document.getElementById('category').value;
-        console.log('Image uploadée :', { imageFile, imageName, category });
-        uploadForm.style.display = 'none';
-        modalGallery.style.display = 'flex';
-        backButton.style.display = 'none';
-        uploadButton.style.display = '';
+        uploadButton.disabled = false;
+        uploadButton.style.backgroundColor = '#1D6154';
     });
 });

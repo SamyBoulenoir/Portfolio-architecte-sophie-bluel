@@ -30,7 +30,7 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
             document.cookie = `jwtToken=${data.token}; path=/;`;
             setTimeout(() => {
                 window.location.href = './index.html';
-            }, 100); // Délai de 100 ms
+            }, 100);
         } else {
             alert("Échec de la connexion, veuillez vérifier vos informations.");
         }
