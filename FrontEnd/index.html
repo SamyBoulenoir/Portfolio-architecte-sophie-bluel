@@ -38,8 +38,12 @@
         </article>
     </section>
     <section id="portfolio">
-        <h2>Mes Projets</h2>
-        <button id="openModal">Afficher en format réduit</button>
+        <div class="modify-title-section">
+            <h2>Mes Projets</h2>
+            <button id="openModal"> 
+                <img src="./assets/icons/modify-btn.png" alt="modify-btn"/> 
+                modifier</button>
+        </div>
         <div class="button"></div>
         <div class="gallery"></div>
     </section>
@@ -50,19 +54,18 @@
             <div class="gallery-wrapper">
                 <div class="modal-gallery"></div>
             </div>
-            <div class="upload-form" style="display: none;">
+            <div class="upload-form">
                 <div class="upload-wrapper">
                     <img src="./assets/icons/picture-svgrepo-com 1.png" alt="image icon" id="imageIcon">
                     <label for="uploadImage" id="upload-img">+ Ajouter une photo</label>
                     <input type="file" id="uploadImage" accept="image/*" style="display: none;">
                     <p id="upload-format">jpg, png : 4mo max</p>
                 </div>
-                <label for="imageName">Nom de l'image</label>
+                <label for="imageName" class="label-style">Titre</label>
                 <input type="text" id="imageName">
-                <label for="category">Catégorie</label>
+                <label for="category" class="label-style">Catégorie</label>
                 <select id="category">
                 </select>
-                <button id="submitUpload">Valider</button>
             </div>
             <img src="./assets/icons/leftArrow.png" alt="Retour" id="backButton" style="position: absolute; top: 26px; left: 20px; cursor: pointer; display: none;">
             <div class="separator-wrapper">
