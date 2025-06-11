@@ -23,11 +23,10 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
         }
 
         const data = await response.json();
-        console.log(data);
 
         if (data.token) {
             alert("Connexion réussie !");
-            document.cookie = `jwtToken=${data.token}; path=/;`;
+            localStorage.setItem('jwtToken', data.token);
             setTimeout(() => {
                 window.location.href = './index.html';
             }, 100);
@@ -37,6 +36,6 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
 
     } catch (error) {
         console.error("Erreur:", error);
-        alert("Une erreur est survenue, veuillez réessayer.");
+        alert("Une erreur est survenue, veuillez réessayer wesh pk.");
     }
 });

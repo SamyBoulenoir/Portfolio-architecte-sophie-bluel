@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     openModalButton.addEventListener('click', () => {
         modalGallery.innerHTML = '';
-        window.worksData.forEach(work => { 
+        window.worksData.forEach(work => {
             createImageElement(work, modalGallery);
         });
         modal.style.display = 'flex';
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function deleteWork(workId, imgContainer) {
-        const jwtToken = getCookie('jwtToken');
+        const jwtToken = localStorage.getItem('jwtToken');
         fetch(`http://localhost:5678/api/works/${workId}`, {
             method: 'DELETE',
             headers: {
@@ -122,14 +122,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function uploadWork() {
         const imageFile = uploadImageInput.files[0];
         const imageName = imageNameInput.value;
-        const categoryId = categorySelect.value; // ID de la catégorie
+        const categoryId = categorySelect.value;
     
         const formData = new FormData();
         formData.append('image', imageFile);
         formData.append('title', imageName);
-        formData.append('category', categoryId); // Envoie l'ID de la catégorie
+        formData.append('category', categoryId);
     
-        const jwtToken = getCookie('jwtToken');
+        const jwtToken = localStorage.getItem('jwtToken');
     
         fetch('http://localhost:5678/api/works', {
             method: 'POST',
