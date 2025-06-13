@@ -36,6 +36,6 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
 
     } catch (error) {
         console.error("Erreur:", error);
-        alert("Une erreur est survenue, veuillez réessayer wesh pk.");
+        alert("Une erreur est survenue, veuillez réessayer.");
     }
 });

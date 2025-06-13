@@ -173,9 +173,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function SubmitForm() {
-        const imageFile = uploadImageInput.files[0];
-        const imageName = imageNameInput.value;
-        const category = categorySelect.value;
         uploadWork();
         uploadImageInput.value = '';
         imageNameInput.value = '';
