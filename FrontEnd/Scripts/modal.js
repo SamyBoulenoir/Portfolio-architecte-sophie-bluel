@@ -160,7 +160,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const imageName = imageNameInput.value.trim();
         const category = categorySelect.value;
 
-        console.log(imageFile, imageName, category, 'pipi');
 
         if (imageFile && imageName !== '' && category !== '') {
             uploadButton.disabled = false;
@@ -177,7 +176,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const imageFile = uploadImageInput.files[0];
         const imageName = imageNameInput.value;
         const category = categorySelect.value;
-        console.log('Image uploadée :', { imageFile, imageName, category });
         uploadWork();
         uploadImageInput.value = '';
         imageNameInput.value = '';
